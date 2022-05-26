@@ -1,7 +1,7 @@
-// please change below placeholders with data from your system
-var tempUserId = 'tempUserId';
-var tempDeposit = 'tempDeposit';
-var tempTransactionId = 'tempTransactionId';
+// please change below placeholders userId, depositId, transactionId  with data from your system
+var userId = 'userId-placeholder';
+var depositId = 'depositId-placeholder';
+var transactionId = 'transactionId-placeholder';
 
 var urlSearchParams = new URLSearchParams(window.location.search);
 var params = Object.fromEntries(urlSearchParams.entries());
@@ -21,13 +21,13 @@ if (sid && status === 'undefined') {
 
 var completeRegistrationInfo = document.getElementById('total-container');
 if (completeRegistrationInfo && sid && status === 'visited') {
-  sendPixelAdhoc4(sid, tempUserId);
+  sendPixelAdhoc4(sid, userId);
   setPrfCookie('prf_status', 'registered');
 }
 
 var completeDeposit = document.getElementById('pl-24937');
 if (completeDeposit && sid && status === 'registered') {
-  sendPixelAdhoc4(sid, tempUserId, tempDeposit, tempTransactionId);
+  sendPixelAdhoc4(sid, userId, depositId, transactionId);
   setPrfCookie('prf_status', 'deposed');
 }
 
