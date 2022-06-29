@@ -5,6 +5,10 @@
   var depositId = 'depositId-placeholder';
   var transactionId = 'transactionId-placeholder';
 
+  var visitEventId = '3peOAZEJ8xsQeMdpe';
+  var registeredEventId = '3peOAZEJ8xsQeMdpe';
+  var transactionEventId = '3peOAZEJ8xsQeMdpe'
+
   var urlSearchParams = new URLSearchParams(window.location.search);
   var params = Object.fromEntries(urlSearchParams.entries());
   var paramSid = params.sid;
@@ -17,24 +21,24 @@
   }
 
   if (sid && status === 'undefined') {
-    sendPixelAdhoc4(sid);
+    sendPixelAdhoc4(visitEventId, sid);
     setPrfCookie('prf_status', 'visited');
   }
 
   var completeRegistrationInfo = document.getElementById('total-container');
   if (completeRegistrationInfo && sid && status === 'visited') {
-    sendPixelAdhoc4(sid, userId);
+    sendPixelAdhoc4(registeredEventId, sid, userId);
     setPrfCookie('prf_status', 'registered');
   }
 
   var completeDeposit = document.getElementById('pl-24937');
   if (completeDeposit && sid && status === 'registered') {
-    sendPixelAdhoc4(sid, userId, depositId, transactionId);
+    sendPixelAdhoc4(transactionEventId, sid, userId, depositId, transactionId);
     setPrfCookie('prf_status', 'deposed');
   }
 
-  function sendPixelAdhoc4(sid, userId , deposit, transactionId) {
-    var allureBaseUrl = 'https://event.softwarelink.cc/activity/k5/3peOAZEJ8xsQeMdpe/';
+  function sendPixelAdhoc4(eventId, sid, userId , deposit, transactionId) {
+    var allureBaseUrl = `https://event.softwarelink.cc/activity/k5/${eventId}/`;
     var requestUrl = allureBaseUrl + sid;
 
     if (transactionId || userId || deposit) {
