@@ -38,7 +38,7 @@
   }
 
   function sendPixelAdhoc4(eventId, sid, userId , deposit, transactionId) {
-    var allureBaseUrl = `https://event.softwarelink.cc/activity/k5/${eventId}/`;
+    var allureBaseUrl = 'https://event.softwarelink.cc/activity/k5/' + eventId + '/';
     var requestUrl = allureBaseUrl + sid;
 
     if (transactionId || userId || deposit) {
